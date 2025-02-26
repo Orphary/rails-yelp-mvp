@@ -1,0 +1,26 @@
+<h1><%= @restaurant.name %></h1>
+
+<ul>
+  <li><%= @restaurant.address %></li>
+  <li><%= @restaurant.phone_number %></li>
+  <li><%= @restaurant.category %></li>
+</ul>
+
+<div class="container w-50">
+  <% if @restaurant.reviews.any? %>
+    <h4 class="text-center">Reviews</h4>
+    <ul class="list-group">
+      <% @restaurant.reviews.each do |review| %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <%= review.content %>
+          <span class=""><%= review.rating %>/5</span>
+        </li>
+      <% end %>
+    </ul>
+  <% else  %>
+    <p></p>
+  <% end %>
+</div>
+
+<%= link_to "Back", restaurants_path %> |
+<%= link_to "Add a review", new_restaurant_review_path(@restaurant) %>
